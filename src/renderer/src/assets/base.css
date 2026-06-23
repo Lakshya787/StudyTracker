@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  /* Default is Dark Mode */
+  --color-background: #111111;
+  --color-foreground: #FFFFFF;
+
+  --color-card: #1C1C1C;
+  --color-card-foreground: #FFFFFF;
+
+  --color-popover: #1C1C1C;
+  --color-popover-foreground: #FFFFFF;
+
+  --color-primary: #FF3366;
+  --color-primary-foreground: #FFFFFF;
+
+  --color-secondary: #00E5FF;
+  --color-secondary-foreground: #000000;
+
+  --color-tertiary: #FFEA00;
+  --color-tertiary-foreground: #000000;
+
+  --color-quaternary: #00FF66;
+  --color-quaternary-foreground: #000000;
+
+  --color-muted: #2A2A2A;
+  --color-muted-foreground: #A1A1AA;
+
+  --color-accent: #FF3366;
+  --color-accent-foreground: #FFFFFF;
+
+  --color-destructive: #FF0033;
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-border: #333333;
+  --color-input: #1C1C1C;
+  --color-ring: #FF3366;
+  
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-heading: 'Outfit', system-ui, sans-serif;
+}
+
+body.theme-light {
+  --color-background: #F4F4F5;
+  --color-foreground: #111111;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #111111;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #111111;
+  --color-primary: #FF3366;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #00E5FF;
+  --color-secondary-foreground: #000000;
+  --color-tertiary: #FFEA00;
+  --color-tertiary-foreground: #000000;
+  --color-quaternary: #00FF66;
+  --color-quaternary-foreground: #000000;
+  --color-muted: #E4E4E7;
+  --color-muted-foreground: #52525B;
+  --color-accent: #FF3366;
+  --color-accent-foreground: #FFFFFF;
+  --color-border: #111111; /* Hard black borders for Memphis style! */
+  --color-input: #FFFFFF;
+  --color-ring: #FF3366;
+}
+
+body.theme-oled {
+  --color-background: #000000;
+  --color-foreground: #FFFFFF;
+  --color-card: #0A0A0A;
+  --color-card-foreground: #FFFFFF;
+  --color-popover: #0A0A0A;
+  --color-popover-foreground: #FFFFFF;
+  --color-primary: #FF1A53;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #00FFFF;
+  --color-secondary-foreground: #000000;
+  --color-tertiary: #FFE600;
+  --color-tertiary-foreground: #000000;
+  --color-quaternary: #00FF55;
+  --color-quaternary-foreground: #000000;
+  --color-muted: #171717;
+  --color-muted-foreground: #A1A1AA;
+  --color-accent: #FF1A53;
+  --color-accent-foreground: #FFFFFF;
+  --color-border: #262626;
+  --color-input: #0A0A0A;
+  --color-ring: #FF1A53;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    @apply bg-background text-foreground font-sans selection:bg-primary selection:text-white transition-colors duration-300;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .shadow-pop {
+    box-shadow: 4px 4px 0px 0px var(--color-foreground);
+    border: 2px solid var(--color-foreground);
+  }
+  .shadow-pop-sm {
+    box-shadow: 2px 2px 0px 0px var(--color-foreground);
+    border: 2px solid var(--color-foreground);
+  }
+  .shadow-pop-hover:hover {
+    box-shadow: 6px 6px 0px 0px var(--color-foreground);
+    transform: translate(-2px, -2px);
+  }
+  .shadow-pop-active:active {
+    box-shadow: 2px 2px 0px 0px var(--color-foreground);
+    transform: translate(2px, 2px);
+  }
+  
+  .shadow-pop-primary {
+    box-shadow: 4px 4px 0px 0px var(--color-primary);
+  }
+  
+  .shadow-pop-secondary {
+    box-shadow: 4px 4px 0px 0px var(--color-secondary);
+  }
+
+  .radius-blob {
+    border-radius: 2rem 2rem 2rem 0;
+  }
+  
+  .bg-dot-pattern {
+    background-image: radial-gradient(var(--color-muted-foreground) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  
+  .text-shadow-sm {
+    text-shadow: 1px 1px 0px var(--color-background);
+  }
+}
