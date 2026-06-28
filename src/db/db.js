@@ -20,6 +20,7 @@ export function initDB() {
   // Migrations — safe to run multiple times
   try { db.exec(`ALTER TABLE sessions ADD COLUMN label TEXT DEFAULT ''`) } catch (_) {}
   try { db.exec(`ALTER TABLE sessions ADD COLUMN mood INTEGER DEFAULT NULL`) } catch (_) {}
+  try { db.exec(`ALTER TABLE sessions ADD COLUMN hidden INTEGER DEFAULT 0`) } catch (_) {}
   try { db.exec(`ALTER TABLE todos ADD COLUMN tag TEXT NOT NULL DEFAULT 'General'`) } catch (_) {}
   try { db.exec(`ALTER TABLE todos ADD COLUMN archived INTEGER NOT NULL DEFAULT 0`) } catch (_) {}
   try { db.exec(`ALTER TABLE todos ADD COLUMN order_index INTEGER NOT NULL DEFAULT 0`) } catch (_) {}
@@ -60,6 +61,14 @@ export function addSession(date, duration_seconds, type, label = '') {
 }
 export function updateSessionMood(id, mood) {
   return getDB().prepare('UPDATE sessions SET mood = ? WHERE id = ?').run(mood, id)
+}
+export function updateSessionLabel(id, label) {
+  const stmt = getDB().prepare('UPDATE sessions SET label = ? WHERE id = ?')
+  return stmt.run(label, id)
+}
+export function hideSession(id) {
+  const stmt = getDB().prepare('UPDATE sessions SET hidden = 1 WHERE id = ?')
+  return stmt.run(id)
 }
 export function getTodaySummary() {
   const db = getDB()

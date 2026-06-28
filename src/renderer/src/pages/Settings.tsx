@@ -60,7 +60,7 @@ export function Settings() {
 
   const exportData = async () => {
     // @ts-ignore
-    const success = await window.api.exportData()
+    const success = await window.api.db.exportData()
     if (success) {
       alert('Data exported successfully!')
     }

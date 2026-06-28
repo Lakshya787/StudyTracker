@@ -222,6 +222,7 @@ app.whenReady().then(() => {
   ipcMain.handle('timer-start', () => { timerManager.start(); buildTrayMenu() })
   ipcMain.handle('timer-pause', () => { timerManager.pause(); buildTrayMenu() })
   ipcMain.handle('timer-toggle', () => { timerManager.toggle(); buildTrayMenu() })
+  ipcMain.handle('timer-stop', () => { timerManager.stop(); buildTrayMenu() })
   ipcMain.handle('timer-switchMode', (_, mode, autoStart) => { timerManager.switchMode(mode, autoStart); buildTrayMenu() })
   ipcMain.handle('timer-setLabel', (_, label) => timerManager.setLabel(label))
   ipcMain.handle('timer-toggleMiniWidget', () => toggleMiniWidget())
@@ -278,6 +279,8 @@ app.whenReady().then(() => {
     return { ...res, newXP: db.getXP() }
   })
   ipcMain.handle('updateSessionMood', (_, ...args) => db.updateSessionMood(...args))
+  ipcMain.handle('updateSessionLabel', (_, ...args) => db.updateSessionLabel(...args))
+  ipcMain.handle('hideSession', (_, ...args) => db.hideSession(...args))
   ipcMain.handle('getTodaySummary', () => db.getTodaySummary())
 
   ipcMain.handle('getTodos', () => db.getTodos())

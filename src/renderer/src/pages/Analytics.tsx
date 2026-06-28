@@ -82,7 +82,7 @@ export function Analytics() {
   const dateMap = useMemo(() => {
     const map = new Map<string, { seconds: number; subjects: Map<string, number> }>()
     sessions
-      .filter(s => s.type === 'pomodoro')
+      .filter(s => s.type === 'pomodoro' || s.type === 'dive')
       .forEach(s => {
         const entry = map.get(s.date) ?? { seconds: 0, subjects: new Map() }
         entry.seconds += s.duration_seconds
