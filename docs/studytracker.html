@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StudyTracker: download</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#edf1f5; --ink:#13202f; --muted:#52606f; --line:#cdd6df; --panel:#f8fafc;
+  --accent:#0d5c63; --accent-ink:#ffffff;
+  --g0:#dde4ec; --g1:#a9d3d4; --g2:#5fa9ad; --g3:#2b7f86; --g4:#0d5c63;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101923; --ink:#e8eef4; --muted:#9aa8b7; --line:#2a3745; --panel:#17222e;
+    --accent:#6cc4c9; --accent-ink:#0b1a20;
+    --g0:#1d2a37; --g1:#1f4a50; --g2:#2c7a80; --g3:#4fa8ad; --g4:#8fdadd;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101923; --ink:#e8eef4; --muted:#9aa8b7; --line:#2a3745; --panel:#17222e;
+  --accent:#6cc4c9; --accent-ink:#0b1a20;
+  --g0:#1d2a37; --g1:#1f4a50; --g2:#2c7a80; --g3:#4fa8ad; --g4:#8fdadd;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;font-size:17px}
+main{max-width:1040px;margin:0 auto;padding:56px 24px 40px}
+h1{font-size:clamp(2.6rem,7.5vw,5.2rem);line-height:.98;letter-spacing:-.035em;font-weight:800;margin:0 0 22px;max-width:12ch}
+.lede{font-size:1.2rem;color:var(--muted);max-width:46ch;margin:0 0 34px}
+.name{font-weight:700;margin:0 0 40px;display:flex;align-items:center;gap:10px}
+.dot{width:14px;height:14px;border-radius:3px;background:var(--accent)}
+.dl{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.btn{display:inline-flex;flex-direction:column;padding:14px 22px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;min-width:170px;font-weight:700}
+.btn small{font-weight:400;color:var(--muted);font-size:.82rem}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary small{color:inherit;opacity:.8}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.note{font-size:.9rem;color:var(--muted);margin:0 0 56px}
+.grid-wrap{overflow-x:auto;padding:4px 0 10px;margin-bottom:10px}
+.grid{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;min-width:640px}
+.grid i{aspect-ratio:1;border-radius:3px;background:var(--g0)}
+.cap{font-size:.9rem;color:var(--muted);margin:0 0 72px}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:36px 32px;margin-bottom:72px}
+.feats h2{font-size:1.05rem;margin:0 0 6px}
+.feats p{margin:0;color:var(--muted);font-size:.98rem}
+.facts{border-top:1.5px solid var(--line);padding-top:24px;display:flex;flex-wrap:wrap;gap:12px 40px;color:var(--muted);font-size:.95rem}
+.facts a{color:var(--ink)}
+footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:no-preference){
+  .grid i{animation:fill .5s ease both;animation-delay:calc(var(--c) * 12ms)}
+  @keyframes fill{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<main>
+  <p class="name"><span class="dot"></span>StudyTracker</p>
+  <h1>Track the hours you actually focused.</h1>
+  <p class="lede">A minimal study timer and streak tracker for your desktop. Everything stays on your computer, with no account and no internet needed.</p>
+
+  <div class="dl" id="dl">
+    <a class="btn" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for Windows<small>.exe installer</small></a>
+    <a class="btn" data-os="mac" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for macOS<small>.dmg</small></a>
+    <a class="btn" data-os="linux" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for Linux<small>AppImage or .deb</small></a>
+  </div>
+  <p class="note" id="note">All downloads are on the latest release page on GitHub.</p>
+
+  <div class="grid-wrap" aria-hidden="true"><div class="grid" id="grid"></div></div>
+  <p class="cap">Your focus time over 52 weeks. Darker squares mean longer sessions.</p>
+
+  <section class="feats">
+    <div><h2>Timer</h2><p>Start Pomodoro and short-break sessions with the spacebar.</p></div>
+    <div><h2>Streaks</h2><p>See every day you studied in a 52-week grid, like a contribution graph.</p></div>
+    <div><h2>Dashboard</h2><p>Check today’s numbers and recent momentum at a glance.</p></div>
+    <div><h2>Todo</h2><p>Keep a short task list next to your timer.</p></div>
+    <div><h2>Constitution</h2><p>Write down the personal rules you want to study by.</p></div>
+  </section>
+
+  <div class="facts">
+    <span>Free and open source</span>
+    <span>Data stored locally in SQLite</span>
+    <a href="https://github.com/Lakshya787/StudyTracker">View source on GitHub</a>
+    <a href="https://github.com/Lakshya787/StudyTracker/issues">Report a problem</a>
+  </div>
+</main>
+<footer>Built by Lakshya787.</footer>
+
+<script>
+(function(){
+  // Illustrative streak grid (seeded, so it looks the same every visit)
+  var g=document.getElementById('grid'),s=7,n=52*7,h='';
+  function r(){s=(s*9301+49297)%233280;return s/233280}
+  for(var c=0;c<n;c++){
+    var wk=Math.floor(c/7),dow=c%7,base=.35+wk/52*.45,v=r();
+    var lvl=v<1-base?0:Math.min(4,1+Math.floor((v-(1-base))/base*4));
+    if(dow>4&&r()<.4)lvl=Math.max(0,lvl-2);
+    h+='<i style="--c:'+wk+';background:var(--g'+lvl+')"></i>';
+  }
+  g.innerHTML=h;
+  // Highlight the download for the visitor's OS
+  var p=((navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||navigator.userAgent||'').toLowerCase();
+  var os=/win/.test(p)?'win':/mac|iphone|ipad/.test(p)?'mac':/linux|x11/.test(p)?'linux':'';
+  var mobile=/android|iphone|ipad/i.test(navigator.userAgent||'');
+  if(os&&!mobile){
+    var b=document.querySelector('[data-os="'+os+'"]');
+    if(b){b.classList.add('primary');document.getElementById('dl').prepend(b)}
+  }else if(mobile){
+    document.getElementById('note').textContent='StudyTracker is a desktop app. Open this page on your computer to download it.';
+  }
+})();
+</script>
+</body>
+</html>
