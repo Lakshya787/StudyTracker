@@ -1,123 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>StudyTracker: download</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  color-scheme:light;
-  --bg:#edf1f5; --ink:#13202f; --muted:#52606f; --line:#cdd6df; --panel:#f8fafc;
-  --accent:#0d5c63; --accent-ink:#ffffff;
-  --g0:#dde4ec; --g1:#a9d3d4; --g2:#5fa9ad; --g3:#2b7f86; --g4:#0d5c63;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;
-    --bg:#101923; --ink:#e8eef4; --muted:#9aa8b7; --line:#2a3745; --panel:#17222e;
-    --accent:#6cc4c9; --accent-ink:#0b1a20;
-    --g0:#1d2a37; --g1:#1f4a50; --g2:#2c7a80; --g3:#4fa8ad; --g4:#8fdadd;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#101923; --ink:#e8eef4; --muted:#9aa8b7; --line:#2a3745; --panel:#17222e;
-  --accent:#6cc4c9; --accent-ink:#0b1a20;
-  --g0:#1d2a37; --g1:#1f4a50; --g2:#2c7a80; --g3:#4fa8ad; --g4:#8fdadd;
-}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;font-size:17px}
-main{max-width:1040px;margin:0 auto;padding:56px 24px 40px}
-h1{font-size:clamp(2.6rem,7.5vw,5.2rem);line-height:.98;letter-spacing:-.035em;font-weight:800;margin:0 0 22px;max-width:12ch}
-.lede{font-size:1.2rem;color:var(--muted);max-width:46ch;margin:0 0 34px}
-.name{font-weight:700;margin:0 0 40px;display:flex;align-items:center;gap:10px}
-.dot{width:14px;height:14px;border-radius:3px;background:var(--accent)}
-.dl{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
-.btn{display:inline-flex;flex-direction:column;padding:14px 22px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;min-width:170px;font-weight:700}
-.btn small{font-weight:400;color:var(--muted);font-size:.82rem}
-.btn:hover{border-color:var(--accent)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.primary small{color:inherit;opacity:.8}
-.btn:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.note{font-size:.9rem;color:var(--muted);margin:0 0 56px}
-.grid-wrap{overflow-x:auto;padding:4px 0 10px;margin-bottom:10px}
-.grid{display:grid;grid-template-rows:repeat(7,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;min-width:640px}
-.grid i{aspect-ratio:1;border-radius:3px;background:var(--g0)}
-.cap{font-size:.9rem;color:var(--muted);margin:0 0 72px}
-.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:36px 32px;margin-bottom:72px}
-.feats h2{font-size:1.05rem;margin:0 0 6px}
-.feats p{margin:0;color:var(--muted);font-size:.98rem}
-.facts{border-top:1.5px solid var(--line);padding-top:24px;display:flex;flex-wrap:wrap;gap:12px 40px;color:var(--muted);font-size:.95rem}
-.facts a{color:var(--ink)}
-footer{max-width:1040px;margin:0 auto;padding:0 24px 40px;color:var(--muted);font-size:.85rem}
-@media (prefers-reduced-motion:no-preference){
-  .grid i{animation:fill .5s ease both;animation-delay:calc(var(--c) * 12ms)}
-  @keyframes fill{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>StudyTracker — your study, in focus</title>
+  <link rel="icon" href="../icon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111;
+      --card: #1c1c1c;
+      --ink: #fff;
+      --muted: #a1a1aa;
+      --line: #333;
+      --pink: #ff3366;
+      --cyan: #00e5ff;
+      --yellow: #ffea00;
+      --green: #00ff66;
+      --shadow: 4px 4px 0 var(--ink);
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      scroll-behavior: smooth;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: var(--bg); line-height: 1.55; }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 4px; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 22px; border-bottom: 2px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font: 800 1.15rem "Outfit", sans-serif; text-decoration: none; letter-spacing: -.03em; }
+    .brand-mark { display: grid; width: 36px; height: 36px; place-items: center; border: 2px solid var(--ink); border-radius: 50%; background: var(--yellow); color: #111; box-shadow: 2px 2px 0 var(--ink); }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .nav { display: flex; align-items: center; gap: 26px; font-size: .9rem; font-weight: 700; }
+    .nav a { color: var(--muted); text-decoration: none; }
+    .nav a:hover { color: var(--ink); }
+    .nav .nav-download { padding: 9px 14px; border: 2px solid var(--ink); border-radius: 9px; background: var(--pink); color: #fff; box-shadow: 2px 2px 0 var(--ink); }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .82fr); align-items: center; gap: 56px; padding-block: 78px 88px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 18px; color: var(--cyan); font-size: .78rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: "Outfit", system-ui, sans-serif; }
+    h1 { max-width: 11ch; margin-bottom: 18px; font-size: clamp(3.2rem, 8vw, 6.4rem); font-weight: 800; letter-spacing: -.065em; line-height: .96; }
+    h1 span { color: var(--pink); }
+    .intro { max-width: 47ch; margin-bottom: 28px; color: var(--muted); font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 10px; padding: 11px 18px; border: 2px solid var(--ink); border-radius: 10px; background: var(--pink); color: #fff; font-size: .9rem; font-weight: 800; text-decoration: none; box-shadow: var(--shadow); transition: transform .16s ease, box-shadow .16s ease; }
+    .button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+    .button.secondary { background: var(--card); }
+    .button svg { width: 17px; height: 17px; }
+    .privacy { margin: 18px 0 0; color: var(--muted); font-size: .84rem; }
+
+    .preview { position: relative; padding: 22px; border: 2px solid var(--ink); border-radius: 18px; background: var(--card); box-shadow: 7px 7px 0 var(--ink); transform: rotate(1deg); }
+    .preview::before { position: absolute; z-index: -1; top: -19px; right: 24px; width: 68px; height: 42px; border: 2px solid var(--ink); border-radius: 9px; background: var(--yellow); content: ""; transform: rotate(9deg); }
+    .preview-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 19px; }
+    .preview-title { margin: 0; font: 700 1.05rem "Outfit", sans-serif; }
+    .preview-dots { display: flex; gap: 5px; }
+    .preview-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--pink); }
+    .preview-dots i:nth-child(2) { background: var(--yellow); }
+    .preview-dots i:nth-child(3) { background: var(--green); }
+    .focus-card { padding: 18px; border: 2px solid var(--ink); border-radius: 12px; background: #282124; }
+    .focus-label { margin-bottom: 1px; color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .timer-face { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .timer-face strong { font: 800 clamp(2.4rem, 5vw, 3.5rem) "Outfit", sans-serif; letter-spacing: -.06em; }
+    .timer-icon { display: grid; width: 48px; height: 48px; flex: 0 0 auto; place-items: center; border: 2px solid var(--ink); border-radius: 50%; background: var(--pink); }
+    .timer-icon svg { width: 22px; height: 22px; }
+    .preview-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .mini-stat { padding: 12px; border: 2px solid var(--ink); border-radius: 10px; background: #242424; }
+    .mini-stat strong { display: block; font: 700 1rem "Outfit", sans-serif; }
+    .mini-stat span { color: var(--muted); font-size: .72rem; }
+
+    .showcase { padding-block: 42px 84px; border-top: 2px solid var(--line); }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+    .section-heading h2 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -.05em; }
+    .section-heading p { max-width: 38ch; margin: 0; color: var(--muted); font-size: .93rem; }
+    .project-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+    .project-card { position: relative; display: flex; min-height: 230px; flex-direction: column; grid-column: span 2; overflow: hidden; padding: 21px; border: 2px solid var(--ink); border-radius: 14px; background: var(--card); box-shadow: 4px 4px 0 var(--ink); transition: transform .18s ease, box-shadow .18s ease; }
+    .project-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+    .project-card.wide { grid-column: span 3; min-height: 204px; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: auto; }
+    .card-icon { display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid var(--ink); border-radius: 11px; background: var(--pink); color: #111; }
+    .card-icon svg { width: 21px; height: 21px; stroke-width: 2.5; }
+    .card-icon.cyan { background: var(--cyan); }
+    .card-icon.yellow { background: var(--yellow); }
+    .card-icon.green { background: var(--green); }
+    .card-icon.purple { background: #b89cff; }
+    .card-number { color: var(--muted); font-size: .75rem; font-weight: 800; letter-spacing: .1em; }
+    .project-card h3 { margin: 25px 0 6px; font-size: 1.35rem; font-weight: 800; letter-spacing: -.03em; }
+    .project-card p { max-width: 38ch; margin: 0; color: var(--muted); font-size: .88rem; }
+    .card-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 16px; font-size: .8rem; font-weight: 800; text-decoration: none; }
+    .card-link span { color: var(--cyan); transition: transform .16s ease; }
+    .card-link:hover span { transform: translateX(3px); }
+    .tag { display: inline-flex; align-self: flex-start; margin-top: 16px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: .68rem; font-weight: 700; }
+
+    .download { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-bottom: 54px; padding: 30px; border: 2px solid var(--ink); border-radius: 16px; background: var(--yellow); color: #111; box-shadow: var(--shadow); }
+    .download h2 { margin: 0 0 4px; font-size: clamp(1.6rem, 3.2vw, 2.3rem); font-weight: 800; letter-spacing: -.04em; }
+    .download p { margin: 0; font-size: .9rem; }
+    .download .button { flex: 0 0 auto; background: var(--bg); }
+    footer { display: flex; justify-content: space-between; gap: 18px; padding-block: 22px; border-top: 2px solid var(--line); color: var(--muted); font-size: .8rem; }
+    footer a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 58px 66px; }
+      .preview { width: min(100%, 480px); margin-inline: auto; }
+      .project-card { grid-column: span 3; }
+      .project-card.wide { grid-column: span 3; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 32px, 1120px); }
+      .topbar { padding-block: 15px; }
+      .nav { gap: 14px; font-size: .8rem; }
+      .nav a:first-child { display: none; }
+      .nav .nav-download { padding: 7px 10px; }
+      .hero { padding-block: 46px 58px; }
+      h1 { font-size: clamp(3rem, 16vw, 4.5rem); }
+      .section-heading { align-items: start; flex-direction: column; gap: 8px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card, .project-card.wide { grid-column: auto; min-height: 200px; }
+      .download { align-items: flex-start; flex-direction: column; padding: 22px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-<main>
-  <p class="name"><span class="dot"></span>StudyTracker</p>
-  <h1>Track the hours you actually focused.</h1>
-  <p class="lede">A minimal study timer and streak tracker for your desktop. Everything stays on your computer, with no account and no internet needed.</p>
+  <header class="wrap topbar" id="top">
+    <a class="brand" href="#top" aria-label="StudyTracker home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Z"/><path d="m8 12 2.5 2.5L16 9"/></svg>
+      </span>
+      StudyTracker
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#projects">Explore</a>
+      <a class="nav-download" href="#download">Get the app</a>
+    </nav>
+  </header>
 
-  <div class="dl" id="dl">
-    <a class="btn" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for Windows<small>.exe installer</small></a>
-    <a class="btn" data-os="mac" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for macOS<small>.dmg</small></a>
-    <a class="btn" data-os="linux" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for Linux<small>AppImage or .deb</small></a>
-  </div>
-  <p class="note" id="note">All downloads are on the latest release page on GitHub.</p>
+  <main>
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Your personal study workspace</p>
+        <h1 id="hero-title">Make focus <span>your thing.</span></h1>
+        <p class="intro">A desktop study companion for focused sessions, useful routines, and seeing your progress add up. Private by design, with your data kept on your computer.</p>
+        <div class="actions" id="downloads">
+          <a class="button" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for Windows <small>.exe</small></a>
+          <a class="button secondary" href="https://github.com/Lakshya787/StudyTracker/releases/latest">All downloads <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="privacy" id="note">Free and open source · No account required</p>
+      </div>
 
-  <div class="grid-wrap" aria-hidden="true"><div class="grid" id="grid"></div></div>
-  <p class="cap">Your focus time over 52 weeks. Darker squares mean longer sessions.</p>
+      <div class="preview" aria-label="Illustration of the StudyTracker focus timer">
+        <div class="preview-head">
+          <p class="preview-title">Focus session</p>
+          <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+        <div class="focus-card">
+          <div class="focus-label">Pomodoro</div>
+          <div class="timer-face">
+            <strong>25:00</strong>
+            <span class="timer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="preview-bottom">
+          <div class="mini-stat"><strong>Keep a streak</strong><span>Build a steady habit</span></div>
+          <div class="mini-stat"><strong>Stay on track</strong><span>One task at a time</span></div>
+        </div>
+      </div>
+    </section>
 
-  <section class="feats">
-    <div><h2>Timer</h2><p>Start Pomodoro and short-break sessions with the spacebar.</p></div>
-    <div><h2>Streaks</h2><p>See every day you studied in a 52-week grid, like a contribution graph.</p></div>
-    <div><h2>Dashboard</h2><p>Check today’s numbers and recent momentum at a glance.</p></div>
-    <div><h2>Todo</h2><p>Keep a short task list next to your timer.</p></div>
-    <div><h2>Constitution</h2><p>Write down the personal rules you want to study by.</p></div>
-  </section>
+    <section class="wrap showcase" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Inside StudyTracker</p>
+          <h2 id="projects-title">Tools for your study flow</h2>
+        </div>
+        <p>Everything you need to get started, stay consistent, and understand where your focus time goes.</p>
+      </div>
 
-  <div class="facts">
-    <span>Free and open source</span>
-    <span>Data stored locally in SQLite</span>
-    <a href="https://github.com/Lakshya787/StudyTracker">View source on GitHub</a>
-    <a href="https://github.com/Lakshya787/StudyTracker/issues">Report a problem</a>
-  </div>
-</main>
-<footer>Built by Lakshya787.</footer>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6m-3 0v3"/></svg></span><span class="card-number">01 / FOCUS</span></div>
+          <h3>Focus timer</h3>
+          <p>Start Pomodoro and short-break sessions, with quick controls to keep your study rhythm moving.</p>
+          <span class="tag">Timer · Breaks</span>
+        </article>
+        <article class="project-card">
+          <div class="card-top"><span class="card-icon cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="card-number">02 / TASKS</span></div>
+          <h3>Task list</h3>
+          <p>Keep your next steps close by and mark tasks done as you work through them.</p>
+          <span class="tag">Todos · Daily planning</span>
+        </article>
+        <article class="project-card">
+          <div class="card-top"><span class="card-icon yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 14.5 9.5 21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></svg></span><span class="card-number">03 / ROUTINE</span></div>
+          <h3>Study rules</h3>
+          <p>Write down the personal guidelines that help you show up and do your best work.</p>
+          <span class="tag">Rules · Your routine</span>
+        </article>
+        <article class="project-card wide">
+          <div class="card-top"><span class="card-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-5 5"/></svg></span><span class="card-number">04 / PROGRESS</span></div>
+          <h3>Streaks &amp; analytics</h3>
+          <p>Explore your focus history, study streaks, and session trends in a glanceable dashboard.</p>
+          <span class="tag">History · Insights</span>
+        </article>
+        <article class="project-card wide">
+          <div class="card-top"><span class="card-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M8 7h8m-8 4h8"/></svg></span><span class="card-number">05 / OVERVIEW</span></div>
+          <h3>Daily dashboard</h3>
+          <p>See today's focus time, sessions, completed tasks, and recent consistency together.</p>
+          <span class="tag">At-a-glance stats</span>
+        </article>
+      </div>
+    </section>
 
-<script>
-(function(){
-  // Illustrative streak grid (seeded, so it looks the same every visit)
-  var g=document.getElementById('grid'),s=7,n=52*7,h='';
-  function r(){s=(s*9301+49297)%233280;return s/233280}
-  for(var c=0;c<n;c++){
-    var wk=Math.floor(c/7),dow=c%7,base=.35+wk/52*.45,v=r();
-    var lvl=v<1-base?0:Math.min(4,1+Math.floor((v-(1-base))/base*4));
-    if(dow>4&&r()<.4)lvl=Math.max(0,lvl-2);
-    h+='<i style="--c:'+wk+';background:var(--g'+lvl+')"></i>';
-  }
-  g.innerHTML=h;
-  // Highlight the download for the visitor's OS
-  var p=((navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||navigator.userAgent||'').toLowerCase();
-  var os=/win/.test(p)?'win':/mac|iphone|ipad/.test(p)?'mac':/linux|x11/.test(p)?'linux':'';
-  var mobile=/android|iphone|ipad/i.test(navigator.userAgent||'');
-  if(os&&!mobile){
-    var b=document.querySelector('[data-os="'+os+'"]');
-    if(b){b.classList.add('primary');document.getElementById('dl').prepend(b)}
-  }else if(mobile){
-    document.getElementById('note').textContent='StudyTracker is a desktop app. Open this page on your computer to download it.';
-  }
-})();
-</script>
+    <section class="wrap download" id="download" aria-labelledby="download-title">
+      <div>
+        <h2 id="download-title">Ready for your next study session?</h2>
+        <p>Get StudyTracker for Windows, macOS, or Linux.</p>
+      </div>
+      <a class="button" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/latest">See latest release <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Built for focus. Your data stays yours.</span>
+    <span><a href="https://github.com/Lakshya787/StudyTracker">View source</a> · <a href="https://github.com/Lakshya787/StudyTracker/issues">Report a problem</a></span>
+  </footer>
+
+  <script>
+    (function () {
+      var platform = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent || '').toLowerCase();
+      var os = /win/.test(platform) ? 'win' : /mac|iphone|ipad/.test(platform) ? 'mac' : /linux|x11/.test(platform) ? 'linux' : '';
+      var mobile = /android|iphone|ipad/i.test(navigator.userAgent || '');
+      var buttons = document.querySelectorAll('[data-os]');
+      var releaseUrl = 'https://github.com/Lakshya787/StudyTracker/releases/latest';
+
+      buttons.forEach(function (button) {
+        if (os) {
+          var label = os === 'win' ? 'Windows' : os === 'mac' ? 'macOS' : 'Linux';
+          button.innerHTML = button.classList.contains('button') && button.closest('.actions')
+            ? 'Download for ' + label + ' <small>' + (os === 'win' ? '.exe' : os === 'mac' ? '.dmg' : 'AppImage / .deb') + '</small>'
+            : 'Latest release for ' + label + ' <span aria-hidden="true">↗</span>';
+          button.href = releaseUrl;
+        }
+      });
+
+      if (mobile) {
+        document.getElementById('note').textContent = 'StudyTracker is a desktop app. Open this page on your computer to download it.';
+      }
+    })();
+  </script>
 </body>
 </html>
