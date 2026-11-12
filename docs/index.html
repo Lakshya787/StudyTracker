@@ -152,7 +152,7 @@
         <h1 id="hero-title">Make focus <span>your thing.</span></h1>
         <p class="intro">A desktop study companion for focused sessions, useful routines, and seeing your progress add up. Private by design, with your data kept on your computer.</p>
         <div class="actions" id="downloads">
-          <a class="button" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/latest">Download for Windows <small>.exe</small></a>
+          <a class="button" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/download/v1.0.0/studytracker-1.0.0-setup.exe">Download for Windows <small>v1.0.0 · 102 MB</small></a>
           <a class="button secondary" href="https://github.com/Lakshya787/StudyTracker/releases/latest">All downloads <span aria-hidden="true">↗</span></a>
         </div>
         <p class="privacy" id="note">Free and open source · No account required</p>
@@ -227,7 +227,7 @@
         <h2 id="download-title">Ready for your next study session?</h2>
         <p>Get StudyTracker for Windows, macOS, or Linux.</p>
       </div>
-      <a class="button" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/latest">See latest release <span aria-hidden="true">↗</span></a>
+      <a class="button" data-os="win" href="https://github.com/Lakshya787/StudyTracker/releases/download/v1.0.0/studytracker-1.0.0-setup.exe">Download v1.0.0 for Windows <span aria-hidden="true">↗</span></a>
     </section>
   </main>
 
@@ -243,14 +243,15 @@
       var mobile = /android|iphone|ipad/i.test(navigator.userAgent || '');
       var buttons = document.querySelectorAll('[data-os]');
       var releaseUrl = 'https://github.com/Lakshya787/StudyTracker/releases/latest';
+      var windowsInstallerUrl = 'https://github.com/Lakshya787/StudyTracker/releases/download/v1.0.0/studytracker-1.0.0-setup.exe';
 
       buttons.forEach(function (button) {
         if (os) {
           var label = os === 'win' ? 'Windows' : os === 'mac' ? 'macOS' : 'Linux';
-          button.innerHTML = button.classList.contains('button') && button.closest('.actions')
-            ? 'Download for ' + label + ' <small>' + (os === 'win' ? '.exe' : os === 'mac' ? '.dmg' : 'AppImage / .deb') + '</small>'
-            : 'Latest release for ' + label + ' <span aria-hidden="true">↗</span>';
-          button.href = releaseUrl;
+          button.innerHTML = button.closest('.actions')
+            ? 'Download for ' + label + ' <small>' + (os === 'win' ? 'v1.0.0 · 102 MB' : os === 'mac' ? '.dmg' : 'AppImage / .deb') + '</small>'
+            : (os === 'win' ? 'Download v1.0.0 for ' : 'Latest release for ') + label + ' <span aria-hidden="true">↗</span>';
+          button.href = os === 'win' ? windowsInstallerUrl : releaseUrl;
         }
       });
 
